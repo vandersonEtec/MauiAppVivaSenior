@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Esta página apresenta a lista de idosos cadastrados no sistema-->  
+    
+<ContentPage
+    x:Class="MauiAppVivaSenior.Views.IdososPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Idosos"
+    BackgroundColor="#F5FAF8">
+
+    <VerticalStackLayout
+        Padding="20"
+        Spacing="18">
+
+        <Label
+            Text="Idosos"
+            FontSize="28"
+            FontAttributes="Bold"
+            TextColor="#155263" />
+
+        <Label
+            Text="Gerencie os idosos cadastrados"
+            FontSize="15"
+            TextColor="Gray" />
+
+        <Button
+            Text="+ Cadastrar Idoso"
+            BackgroundColor="#10A77F"
+            TextColor="White"
+            CornerRadius="12"
+            HeightRequest="50"
+            Clicked="BtnCadastrarIdoso_Clicked" />
+
+        <CollectionView
+            x:Name="listaIdosos"
+            SelectionMode="Single"
+            SelectionChanged="ListaIdosos_SelectionChanged">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout
+                    Padding="20"
+                    Spacing="8"
+                    HorizontalOptions="Center">
+
+                    <Label
+                        Text="👴"
+                        FontSize="45"
+                        HorizontalOptions="Center" />
+
+                    <Label
+                        Text="Nenhum idoso cadastrado"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#155263"
+                        HorizontalOptions="Center" />
+
+                    <Label
+                        Text="Clique em 'Cadastrar Idoso' para adicionar um novo cadastro."
+                        FontSize="14"
+                        TextColor="Gray"
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15"
+                        Margin="0,5">
+
+                        <VerticalStackLayout Spacing="5">
+
+                            <Label
+                                Text="{Binding Nome}"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="#155263" />
+
+                            <Label
+                                Text="{Binding Telefone}"
+                                FontSize="14"
+                                TextColor="Gray" />
+
+                            <Label
+                                Text="{Binding Endereco}"
+                                FontSize="14"
+                                TextColor="Gray" />
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

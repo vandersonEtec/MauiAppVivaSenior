@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Esta página apresenta o formulário para cadastrar um medicamento.-->
+    
+<ContentPage
+    x:Class="MauiAppVivaSenior.Views.CadastroMedicamentoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Cadastro de Medicamento"
+    BackgroundColor="#F5F7FA">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="25"
+            Spacing="15">
+
+            <Label
+                Text="Cadastro de Medicamento"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#10A77F" />
+
+            <Label
+                Text="Preencha os dados do medicamento"
+                FontSize="16"
+                HorizontalOptions="Center"
+                TextColor="Gray" />
+
+            <Border
+                BackgroundColor="White"
+                StrokeThickness="0"
+                Padding="20">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label
+                        Text="Nome do medicamento"
+                        FontAttributes="Bold" />
+
+                    <Entry
+                        x:Name="txtNome"
+                        Placeholder="Digite o nome do medicamento" />
+
+                    <Label
+                        Text="Dosagem"
+                        FontAttributes="Bold" />
+
+                    <Entry
+                        x:Name="txtDosagem"
+                        Placeholder="Ex.: 500 mg" />
+
+                    <Label
+                        Text="Horário"
+                        FontAttributes="Bold" />
+
+                    <TimePicker
+                        x:Name="tmpHorario" />
+
+                    <Label
+                        Text="Observação"
+                        FontAttributes="Bold" />
+
+                    <Editor
+                        x:Name="txtObservacao"
+                        Placeholder="Digite uma observação"
+                        HeightRequest="100" />
+
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        Spacing="15">
+
+                        <Button
+                            Text="Cancelar"
+                            Clicked="BtnCancelar_Clicked"
+                            BackgroundColor="#999999"
+                            TextColor="White" />
+
+                        <Button
+                            Text="Salvar"
+                            Clicked="BtnSalvar_Clicked"
+                            BackgroundColor="#10A77F"
+                            TextColor="White" />
+
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

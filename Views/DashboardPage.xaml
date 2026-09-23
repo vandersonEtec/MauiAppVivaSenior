@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Esta página apresenta o painel principal do aplicativo-->
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppVivaSenior.Views.DashboardPage"
+    Title="ViverSenior"
+    BackgroundColor="#F5FAF8">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="18">
+
+            <!-- Cabeçalho -->
+            <Grid ColumnDefinitions="*,Auto">
+
+                <VerticalStackLayout>
+
+                    <Label
+                        Text="Olá!"
+                        FontSize="16"
+                        TextColor="Gray" />
+
+                    <Label
+                        Text="Bem-vindo ao ViverSenior"
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        TextColor="#155263" />
+
+                </VerticalStackLayout>
+
+                <Label
+                    Grid.Column="1"
+                    Text="♡"
+                    FontSize="40"
+                    TextColor="#10A77F"
+                    VerticalOptions="Center" />
+
+            </Grid>
+
+            <!-- Resumo -->
+            <Border
+                BackgroundColor="#DDF5ED"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 15"
+                Padding="18">
+
+                <VerticalStackLayout Spacing="5">
+
+                    <Label
+                        Text="Resumo do dia"
+                        FontSize="19"
+                        FontAttributes="Bold"
+                        TextColor="#155263" />
+
+                    <Label
+                        Text="Acompanhe os cuidados dos idosos."
+                        FontSize="14"
+                        TextColor="#52706B" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- Acessos rápidos -->
+
+            <Label
+                Text="Acessos rápidos"
+                FontSize="19"
+                FontAttributes="Bold"
+                TextColor="#155263" />
+
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto"
+                ColumnSpacing="12"
+                RowSpacing="12">
+
+                <Button
+                    Text="👴&#10;Idosos"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HeightRequest="100"
+                    BackgroundColor="White"
+                    TextColor="#155263"
+                    CornerRadius="15"
+                    Clicked="BtnIdosos_Clicked" />
+
+                <Button
+                    Text="💊&#10;Medicamentos"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HeightRequest="100"
+                    BackgroundColor="White"
+                    TextColor="#155263"
+                    CornerRadius="15"
+                    Clicked="BtnMedicamentos_Clicked" />
+
+                <Button
+                    Text="📅&#10;Consultas"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HeightRequest="100"
+                    BackgroundColor="White"
+                    TextColor="#155263"
+                    CornerRadius="15"
+                    Clicked="BtnConsultas_Clicked" />
+
+                <Button
+                    Text="📝&#10;Observações"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HeightRequest="100"
+                    BackgroundColor="White"
+                    TextColor="#155263"
+                    CornerRadius="15"
+                    Clicked="BtnObservacoes_Clicked" />
+
+            </Grid>
+
+            <!-- Próximas atividades -->
+
+            <Label
+                Text="Próximas atividades"
+                FontSize="19"
+                FontAttributes="Bold"
+                TextColor="#155263"
+                Margin="0,10,0,0" />
+
+            <Border
+                BackgroundColor="White"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 15"
+                Padding="15">
+
+                <HorizontalStackLayout Spacing="15">
+
+                    <Label
+                        Text="📅"
+                        FontSize="30"
+                        VerticalOptions="Center" />
+
+                    <VerticalStackLayout>
+
+                        <Label
+                            Text="Nenhuma atividade"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="#155263" />
+
+                        <Label
+                            Text="As próximas consultas aparecerão aqui."
+                            FontSize="13"
+                            TextColor="Gray" />
+
+                    </VerticalStackLayout>
+
+                </HorizontalStackLayout>
+
+            </Border>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

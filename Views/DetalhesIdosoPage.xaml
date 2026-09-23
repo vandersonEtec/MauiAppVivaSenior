@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MauiAppVivaSenior.Views.DetalhesIdosoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Detalhes do Idoso"
+    BackgroundColor="#F5FAF8">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                Text="Detalhes do Idoso"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#155263" />
+
+            <Border
+                BackgroundColor="White"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 15"
+                Padding="20">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label
+                        Text="Nome"
+                        FontAttributes="Bold"
+                        TextColor="#155263" />
+
+                    <Label
+                        x:Name="lblNome"
+                        FontSize="18" />
+
+                    <Label
+                        Text="Data de nascimento"
+                        FontAttributes="Bold"
+                        TextColor="#155263" />
+
+                    <Label
+                        x:Name="lblDataNascimento"
+                        FontSize="18" />
+
+                    <Label
+                        Text="Telefone"
+                        FontAttributes="Bold"
+                        TextColor="#155263" />
+
+                    <Label
+                        x:Name="lblTelefone"
+                        FontSize="18" />
+
+                    <Label
+                        Text="Endereço"
+                        FontAttributes="Bold"
+                        TextColor="#155263" />
+
+                    <Label
+                        x:Name="lblEndereco"
+                        FontSize="18" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <Button
+                Text="💊 Medicamentos"
+                BackgroundColor="#10A77F"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="50"
+                Clicked="BtnMedicamentos_Clicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

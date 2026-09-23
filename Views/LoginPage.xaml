@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppVivaSenior.Views.LoginPage"
+    Title="Login"
+    BackgroundColor="White">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="15"
+            VerticalOptions="Center">
+
+            <Label
+                Text="♡"
+                FontSize="70"
+                HorizontalOptions="Center"
+                TextColor="#20B89A"/>
+
+            <Label
+                Text="ViverSenior"
+                FontSize="32"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#155263"/>
+
+            <Label
+                Text="Cuidado que aproxima.&#10;monitoramento que acolhe."
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                TextColor="Gray"
+                Margin="0,0,0,25"/>
+
+            <Border
+                Stroke="#E5E5E5"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="12">
+
+                <Entry
+                    Placeholder="E-mail"
+                    Keyboard="Email"
+                    ClearButtonVisibility="WhileEditing"/>
+            </Border>
+
+            <Border
+                Stroke="#E5E5E5"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="12">
+
+                <Entry
+                    Placeholder="Senha"
+                    IsPassword="True"/>
+            </Border>
+
+            <HorizontalStackLayout
+                Spacing="10">
+
+                <CheckBox/>
+
+                <Label
+                    Text="Lembrar-me"
+                    VerticalOptions="Center"
+                    FontSize="13"/>
+
+                <Label
+                    Text="Esqueci minha senha"
+                    TextColor="#20A88A"
+                    FontSize="13"
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <!-- Botão de acesso ao aplicativo -->
+            <Button
+                Text="ENTRAR"
+                HeightRequest="50"
+                CornerRadius="8"
+                BackgroundColor="#10A77F"
+                TextColor="White"
+                FontAttributes="Bold"
+                Margin="0,10,0,0"
+                Clicked="BtnEntrar_Clicked"/>
+
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                Spacing="5"
+                Margin="0,10,0,0">
+
+                <Label
+                    Text="Não tem uma conta?"
+                    TextColor="Gray"/>
+
+                <Label
+                    Text="Cadastre-se"
+                    TextColor="#10A77F"
+                    FontAttributes="Bold"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="MauiAppVivaSenior.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
