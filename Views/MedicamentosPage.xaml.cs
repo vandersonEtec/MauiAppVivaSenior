@@ -44,8 +44,31 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
     {
         await _databaseService.InicializarBancoAsync();
 
-        var medicamentos =
-            await _databaseService.ListarMedicamentosAsync(_idoso.Id);
+        var associacoes =
+            await _databaseService.ListarIdosoMedicamentosAsync(
+                _idoso.Id);
+
+        var medicamentos = new List<MedicamentoExibicao>();
+
+        foreach (var associacao in associacoes)
+        {
+            var medicamento =
+                await _databaseService.BuscarMedicamentoPorIdAsync(
+                    associacao.MedicamentoId);
+
+            if (medicamento != null)
+            {
+                medicamentos.Add(new MedicamentoExibicao
+                {
+                    Id = associacao.Id,
+                    MedicamentoId = associacao.MedicamentoId,
+                    Nome = medicamento.Nome,
+                    Dosagem = associacao.Dosagem,
+                    Horario = associacao.Horario,
+                    Observacao = associacao.Observacao
+                });
+            }
+        }
 
         listaMedicamentos.ItemsSource = medicamentos;
     }
@@ -58,10 +81,113 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
             return;
 
         await Shell.Current.GoToAsync(
-            nameof(CadastroMedicamentoPage),
+            nameof(CatalogoMedicamentosPage),
             new Dictionary<string, object>
             {
             { "IdosoSelecionado", _idoso }
             });
+    }
+
+    private async void BtnEditarMedicamento_Clicked(
+    object sender,
+    EventArgs e)
+    {
+        var botao = sender as Button;
+
+        if (botao == null)
+            return;
+
+        var medicamento =
+            botao.BindingContext as MedicamentoExibicao;
+
+        if (medicamento == null)
+            return;
+
+        await _databaseService.InicializarBancoAsync();
+
+        var associacao =
+            await _databaseService
+                .ListarIdosoMedicamentosAsync(_idoso.Id);
+
+        var idosoMedicamento =
+            associacao.FirstOrDefault(
+                im => im.Id == medicamento.Id);
+
+        if (idosoMedicamento == null)
+            return;
+
+        await Shell.Current.GoToAsync(
+            nameof(EditarMedicamentoPage),
+            new Dictionary<string, object>
+            {
+            {
+                "IdosoMedicamento",
+                idosoMedicamento
+            },
+            {
+                "NomeMedicamento",
+                medicamento.Nome
+            }
+            });
+    }
+    public class MedicamentoExibicao
+    {
+        public int Id { get; set; }
+
+        public int MedicamentoId { get; set; }
+
+        public string Nome { get; set; }
+
+        public string Dosagem { get; set; }
+
+        public string Horario { get; set; }
+
+        public string Observacao { get; set; }
+    }
+    private async void BtnExcluirMedicamento_Clicked(
+    object sender,
+    EventArgs e)
+    {
+        var botao = sender as Button;
+
+        if (botao == null)
+            return;
+
+        var medicamento =
+            botao.BindingContext as MedicamentoExibicao;
+
+        if (medicamento == null)
+            return;
+
+        bool confirmar = await DisplayAlert(
+            "Excluir medicamento",
+            "Deseja excluir este medicamento deste idoso?",
+            "Sim",
+            "Não");
+
+        if (!confirmar)
+            return;
+
+        await _databaseService.InicializarBancoAsync();
+
+        var medicamentoBanco =
+            await _databaseService.BuscarMedicamentoPorNomeAsync(
+                medicamento.Nome);
+
+        if (medicamentoBanco == null)
+            return;
+
+        var associacao =
+            await _databaseService.BuscarIdosoMedicamentoAsync(
+                _idoso.Id,
+                medicamentoBanco.Id);
+
+        if (associacao == null)
+            return;
+
+        await _databaseService.ExcluirIdosoMedicamentoAsync(
+            associacao);
+
+        await CarregarMedicamentosAsync();
     }
 }

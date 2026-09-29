@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppVivaSenior.Views.CadastroConsultaPage"
+    Title="Cadastrar Consulta">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                Text="Cadastro de Consulta"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="#155263" />
+
+            <Label
+                x:Name="lblNomeIdoso"
+                FontSize="18"
+                TextColor="#52706B" />
+
+            <Label Text="Especialidade" />
+
+            <Entry
+                x:Name="txtEspecialidade"
+                Placeholder="Ex.: Cardiologista" />
+
+            <Label Text="Médico" />
+
+            <Entry
+                x:Name="txtMedico"
+                Placeholder="Nome do médico" />
+
+            <Label Text="Data da consulta" />
+
+            <DatePicker
+                x:Name="dtpData" />
+
+            <Label Text="Horário" />
+
+            <TimePicker
+                x:Name="tmpHorario" />
+
+            <Label Text="Observação" />
+
+            <Editor
+                x:Name="txtObservacao"
+                Placeholder="Digite uma observação"
+                HeightRequest="100" />
+
+            <Button
+                Text="Salvar"
+                Clicked="BtnSalvar_Clicked"
+                BackgroundColor="#10A77F"
+                TextColor="White" />
+
+            <Button
+                Text="Cancelar"
+                Clicked="BtnCancelar_Clicked"
+                BackgroundColor="#DDDDDD"
+                TextColor="Black" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

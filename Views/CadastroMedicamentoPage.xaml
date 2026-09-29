@@ -49,7 +49,7 @@
 
                     <Entry
                         x:Name="txtDosagem"
-                        Placeholder="Ex.: 500 mg" />
+                        Placeholder="Ex.: 01 Comprimido" />
 
                     <Label
                         Text="Horário"

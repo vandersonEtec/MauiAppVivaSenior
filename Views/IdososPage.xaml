@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<!-- Esta página apresenta a lista de idosos cadastrados no sistema-->  
-    
 <ContentPage
     x:Class="MauiAppVivaSenior.Views.IdososPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -9,22 +7,20 @@
     Title="Idosos"
     BackgroundColor="#F5FAF8">
 
-    <VerticalStackLayout
+    <Grid
         Padding="20"
-        Spacing="18">
+        RowDefinitions="Auto,Auto,*"
+        RowSpacing="15">
 
         <Label
+            Grid.Row="0"
             Text="Idosos"
             FontSize="28"
             FontAttributes="Bold"
             TextColor="#155263" />
 
-        <Label
-            Text="Gerencie os idosos cadastrados"
-            FontSize="15"
-            TextColor="Gray" />
-
         <Button
+            Grid.Row="1"
             Text="+ Cadastrar Idoso"
             BackgroundColor="#10A77F"
             TextColor="White"
@@ -33,39 +29,12 @@
             Clicked="BtnCadastrarIdoso_Clicked" />
 
         <CollectionView
+            Grid.Row="2"
             x:Name="listaIdosos"
             SelectionMode="Single"
             SelectionChanged="ListaIdosos_SelectionChanged">
 
-            <CollectionView.EmptyView>
-                <VerticalStackLayout
-                    Padding="20"
-                    Spacing="8"
-                    HorizontalOptions="Center">
-
-                    <Label
-                        Text="👴"
-                        FontSize="45"
-                        HorizontalOptions="Center" />
-
-                    <Label
-                        Text="Nenhum idoso cadastrado"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        TextColor="#155263"
-                        HorizontalOptions="Center" />
-
-                    <Label
-                        Text="Clique em 'Cadastrar Idoso' para adicionar um novo cadastro."
-                        FontSize="14"
-                        TextColor="Gray"
-                        HorizontalTextAlignment="Center" />
-
-                </VerticalStackLayout>
-            </CollectionView.EmptyView>
-
             <CollectionView.ItemTemplate>
-
                 <DataTemplate>
 
                     <Border
@@ -79,18 +48,13 @@
 
                             <Label
                                 Text="{Binding Nome}"
-                                FontSize="18"
+                                FontSize="20"
                                 FontAttributes="Bold"
                                 TextColor="#155263" />
 
                             <Label
-                                Text="{Binding Telefone}"
-                                FontSize="14"
-                                TextColor="Gray" />
-
-                            <Label
-                                Text="{Binding Endereco}"
-                                FontSize="14"
+                                Text="{Binding Idade, StringFormat='Idade: {0} anos'}"
+                                FontSize="15"
                                 TextColor="Gray" />
 
                         </VerticalStackLayout>
@@ -98,11 +62,10 @@
                     </Border>
 
                 </DataTemplate>
-
             </CollectionView.ItemTemplate>
 
         </CollectionView>
 
-    </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>

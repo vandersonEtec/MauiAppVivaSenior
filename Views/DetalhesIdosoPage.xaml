@@ -25,55 +25,119 @@
                 StrokeShape="RoundRectangle 15"
                 Padding="20">
 
-                <VerticalStackLayout Spacing="15">
+                <VerticalStackLayout Spacing="12">
 
                     <Label
-                        Text="Nome"
+                        Text="Nome completo"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        TextColor="Gray" />
+
+                    <Label
+                        x:Name="lblNome"
+                        FontSize="20"
                         FontAttributes="Bold"
                         TextColor="#155263" />
 
                     <Label
-                        x:Name="lblNome"
-                        FontSize="18" />
+                        Text="Idade"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        TextColor="Gray" />
+
+                    <Label
+                        x:Name="lblIdade"
+                        FontSize="17"
+                        TextColor="#333333" />
 
                     <Label
                         Text="Data de nascimento"
                         FontAttributes="Bold"
-                        TextColor="#155263" />
+                        FontSize="14"
+                        TextColor="Gray" />
 
                     <Label
                         x:Name="lblDataNascimento"
-                        FontSize="18" />
+                        FontSize="17"
+                        TextColor="#333333" />
+
+                    <Label
+                        Text="CPF"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        TextColor="Gray" />
+
+                    <Label
+                        x:Name="lblCPF"
+                        FontSize="17"
+                        TextColor="#333333" />
 
                     <Label
                         Text="Telefone"
                         FontAttributes="Bold"
-                        TextColor="#155263" />
+                        FontSize="14"
+                        TextColor="Gray" />
 
                     <Label
                         x:Name="lblTelefone"
-                        FontSize="18" />
+                        FontSize="17"
+                        TextColor="#333333" />
 
                     <Label
                         Text="Endereço"
                         FontAttributes="Bold"
-                        TextColor="#155263" />
+                        FontSize="14"
+                        TextColor="Gray" />
 
                     <Label
                         x:Name="lblEndereco"
-                        FontSize="18" />
+                        FontSize="17"
+                        TextColor="#333333" />
+
+                    <Label
+                        Text="Observações"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        TextColor="Gray" />
+
+                    <Label
+                        x:Name="lblObservacoes"
+                        FontSize="17"
+                        TextColor="#333333" />
 
                 </VerticalStackLayout>
 
             </Border>
 
-            <Button
-                Text="💊 Medicamentos"
-                BackgroundColor="#10A77F"
-                TextColor="White"
-                CornerRadius="12"
-                HeightRequest="50"
-                Clicked="BtnMedicamentos_Clicked" />
+            <HorizontalStackLayout
+                HorizontalOptions="Center"
+                Spacing="10">
+
+                <Button
+                    Text="💊 Medicações"
+                    BackgroundColor="#10A77F"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Clicked="BtnMedicamentos_Clicked" />
+
+                <Button
+                    Text="✏️ Editar"
+                    BackgroundColor="#10A77F"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Clicked="BtnEditar_Clicked" />
+
+                <Button
+                    Text="🗑️ Excluir"
+                    BackgroundColor="#D9534F"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Clicked="BtnExcluir_Clicked" />
+
+            </HorizontalStackLayout>
 
         </VerticalStackLayout>
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MauiAppVivaSenior.Views.CatalogoMedicamentosPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Medicamentos"
+    BackgroundColor="#F5FAF8">
+
+    <VerticalStackLayout
+        Padding="20"
+        Spacing="15">
+
+        <Label
+            Text="Catálogo de Medicamentos"
+            FontSize="28"
+            FontAttributes="Bold"
+            TextColor="#155263" />
+
+        <Label
+            Text="Medicamentos cadastrados no sistema"
+            FontSize="15"
+            TextColor="Gray" />
+
+        <Button
+            Text="+ Cadastrar Medicamento"
+            BackgroundColor="#10A77F"
+            TextColor="White"
+            CornerRadius="12"
+            HeightRequest="50"
+            Clicked="BtnCadastrarMedicamento_Clicked" />
+
+        <CollectionView
+            x:Name="listaMedicamentos"
+            SelectionMode="Single"
+            SelectionChanged="MedicamentoSelecionado">
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    Padding="20"
+                    Spacing="8"
+                    HorizontalOptions="Center">
+
+                    <Label
+                        Text="💊"
+                        FontSize="45"
+                        HorizontalOptions="Center" />
+
+                    <Label
+                        Text="Nenhum medicamento cadastrado"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#155263"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15"
+                        Margin="0,5">
+
+                        <Label
+                            Text="{Binding Nome}"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#155263" />
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

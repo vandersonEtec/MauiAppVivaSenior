@@ -14,16 +14,28 @@ public partial class DashboardPage : ContentPage
         await Shell.Current.GoToAsync(nameof(IdososPage));
     }
 
-    private async void BtnMedicamentos_Clicked(object sender, EventArgs e)
+    private async void BtnMedicamentos_Clicked(
+        object sender,
+        EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(MedicamentosPage));
+        await Shell.Current.GoToAsync(
+            nameof(CatalogoMedicamentosPage));
     }
 
-    private async void BtnConsultas_Clicked(object sender, EventArgs e)
+    private async void BtnConsultas_Clicked(
+        object sender,
+        EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(ConsultasPage));
+        await Shell.Current.GoToAsync(
+            nameof(IdososPage),
+            new Dictionary<string, object>
+            {
+            {
+                "AbrirConsultas",
+                true
+            }
+            });
     }
-
     private async void BtnObservacoes_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(nameof(ObservacoesPage));

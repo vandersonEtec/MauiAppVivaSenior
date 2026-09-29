@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MauiAppVivaSenior.Views.CadastroMedicamentoCatalogoPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Cadastrar Medicamento"
+    BackgroundColor="#F5FAF8">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                Text="Cadastrar Medicamento"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#155263" />
+
+            <Label
+                Text="Digite o nome do medicamento e sua dosagem."
+                FontSize="15"
+                TextColor="Gray" />
+
+            <Label
+                Text="Medicamento"
+                FontSize="16"
+                TextColor="#155263" />
+
+            <Entry
+                x:Name="txtNome"
+                Placeholder="Ex.: Paracetamol 500 mg" />
+
+            <Button
+                Text="Salvar"
+                BackgroundColor="#10A77F"
+                TextColor="White"
+                CornerRadius="12"
+                HeightRequest="50"
+                Clicked="BtnSalvar_Clicked" />
+
+            <Button
+                Text="Cancelar"
+                BackgroundColor="#DDDDDD"
+                TextColor="Black"
+                CornerRadius="12"
+                HeightRequest="50"
+                Clicked="BtnCancelar_Clicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

@@ -2,9 +2,6 @@
 
 namespace MauiAppVivaSenior.Models;
 
-
-//Classe representa os dados de um idoso cadastrado no sistema
-
 public class Idoso
 {
     [PrimaryKey, AutoIncrement]
@@ -14,7 +11,27 @@ public class Idoso
 
     public DateTime DataNascimento { get; set; }
 
+    public string CPF { get; set; }
+
     public string Telefone { get; set; }
 
     public string Endereco { get; set; }
+
+    public string Observacoes { get; set; }
+
+    [Ignore]
+    public int Idade
+    {
+        get
+        {
+            var hoje = DateTime.Today;
+
+            var idade = hoje.Year - DataNascimento.Year;
+
+            if (DataNascimento.Date > hoje.AddYears(-idade))
+                idade--;
+
+            return idade;
+        }
+    }
 }

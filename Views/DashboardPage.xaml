@@ -6,7 +6,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MauiAppVivaSenior.Views.DashboardPage"
-    Title="ViverSenior"
+    Title="VivaSenior"
     BackgroundColor="#F5FAF8">
 
     <ScrollView>
@@ -26,19 +26,19 @@
                         TextColor="Gray" />
 
                     <Label
-                        Text="Bem-vindo ao ViverSenior"
+                        Text="Bem-vindo ao VivaSenior"
                         FontSize="24"
                         FontAttributes="Bold"
                         TextColor="#155263" />
 
                 </VerticalStackLayout>
 
-                <Label
-                    Grid.Column="1"
-                    Text="♡"
-                    FontSize="40"
-                    TextColor="#10A77F"
-                    VerticalOptions="Center" />
+                <Image
+                    Source="Logo_VivaSenior.jpg"
+                    HeightRequest="130"
+                    WidthRequest="130"
+                    Aspect="AspectFit"
+                    HorizontalOptions="Center" />
 
             </Grid>
 
@@ -97,7 +97,7 @@
                     HeightRequest="100"
                     BackgroundColor="White"
                     TextColor="#155263"
-                    CornerRadius="15"
+                    CornerRadius="15"   
                     Clicked="BtnMedicamentos_Clicked" />
 
                 <Button

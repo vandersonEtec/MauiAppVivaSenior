@@ -1,12 +1,136 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppVivaSenior.Views.ConsultasPage"
-             Title="ConsultasPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    x:Class="MauiAppVivaSenior.Views.ConsultasPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Consultas"
+    BackgroundColor="#F5FAF8">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,Auto,*"
+        RowSpacing="15">
+
+        <Label
+            Grid.Row="0"
+            Text="Consultas"
+            FontSize="28"
+            FontAttributes="Bold"
+            TextColor="#155263" />
+
+        <Label
+            Grid.Row="1"
+            x:Name="lblNomeIdoso"
+            FontSize="16"
+            TextColor="Gray" />
+
+        <Button
+            Grid.Row="2"
+            Text="+ Cadastrar Consulta"
+            BackgroundColor="#10A77F"
+            TextColor="White"
+            CornerRadius="12"
+            HeightRequest="50"
+            Clicked="BtnCadastrarConsulta_Clicked" />
+
+        <CollectionView
+            Grid.Row="3"
+            x:Name="listaConsultas"
+            SelectionMode="None">
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout
+                    Padding="20"
+                    Spacing="8"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="📅"
+                        FontSize="45"
+                        HorizontalOptions="Center" />
+
+                    <Label
+                        Text="Nenhuma consulta cadastrada"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#155263"
+                        HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15"
+                        Padding="15"
+                        Margin="0,5">
+
+                        <VerticalStackLayout Spacing="7">
+
+                            <Label
+                                Text="{Binding Especialidade}"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                TextColor="#155263" />
+
+                            <Label
+                                Text="{Binding Medico, StringFormat='Médico: {0}'}"
+                                FontSize="15"
+                                TextColor="Gray" />
+
+                            <Label
+                                Text="{Binding Data, StringFormat='Data: {0:dd/MM/yyyy}'}"
+                                FontSize="15"
+                                TextColor="Gray" />
+
+                            <Label
+                                Text="{Binding Horario, StringFormat='Horário: {0}'}"
+                                FontSize="15"
+                                TextColor="Gray" />
+
+                            <Label
+                                Text="{Binding Observacao, StringFormat='Observação: {0}'}"
+                                FontSize="15"
+                                TextColor="Gray" />
+
+                            <HorizontalStackLayout
+                                Spacing="10"
+                                Margin="0,5,0,0">
+
+                                <Button
+                                    Text="✏️ Editar"
+                                    BackgroundColor="#10A77F"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    HeightRequest="40"
+                                    HorizontalOptions="FillAndExpand"
+                                    Clicked="BtnEditarConsulta_Clicked" />
+
+                                <Button
+                                    Text="🗑️ Excluir"
+                                    BackgroundColor="#D9534F"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    HeightRequest="40"
+                                    HorizontalOptions="FillAndExpand"
+                                    Clicked="BtnExcluirConsulta_Clicked" />
+                            </HorizontalStackLayout>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
 </ContentPage>

@@ -1,94 +1,52 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <ContentPage
-    x:Class="MauiAppVivaSenior.Views.CadastroIdosoPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Cadastro de Idoso"
-    BackgroundColor="#F5F7FA">
+    x:Class="MauiAppVivaSenior.Views.CadastroIdosoPage">
 
     <ScrollView>
-
-        <VerticalStackLayout
-            Padding="25"
-            Spacing="15">
+        <VerticalStackLayout Padding="20" Spacing="15">
 
             <Label
                 Text="Cadastro de Idoso"
-                FontSize="28"
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                TextColor="#10A77F" />
+                FontSize="24"
+                FontAttributes="Bold" />
 
-            <Label
-                Text="Preencha os dados do idoso"
-                FontSize="16"
-                HorizontalOptions="Center"
-                TextColor="Gray" />
+            <Entry
+                x:Name="txtNome"
+                Placeholder="Nome completo" />
 
-            <Border
-                BackgroundColor="White"
-                StrokeThickness="0"
-                Padding="20">
+            <DatePicker
+                x:Name="dtpDataNascimento" />
 
-                <VerticalStackLayout Spacing="15">
+            <Entry
+                x:Name="txtCPF"
+                Placeholder="CPF" />
 
-                    <Label
-                        Text="Nome completo"
-                        FontAttributes="Bold" />
+            <Entry
+                x:Name="txtTelefone"
+                Placeholder="Telefone"
+                Keyboard="Telephone" />
 
-                    <Entry
-                        x:Name="txtNome"
-                        Placeholder="Digite o nome do idoso" />
+            <Entry
+                x:Name="txtEndereco"
+                Placeholder="Endereço" />
 
-                    <Label
-                        Text="Data de nascimento"
-                        FontAttributes="Bold" />
+            <Editor
+                x:Name="txtObservacoes"
+                Placeholder="Observações"
+                AutoSize="TextChanges"
+                HeightRequest="100" />
 
-                    <DatePicker
-                        x:Name="dtpNascimento" />
+            <Button
+                Text="Salvar"
+                Clicked="BtnSalvar_Clicked" />
 
-                    <Label
-                        Text="Telefone"
-                        FontAttributes="Bold" />
-
-                    <Entry
-                        x:Name="txtTelefone"
-                        Placeholder="Digite o telefone"
-                        Keyboard="Telephone" />
-
-                    <Label
-                        Text="Endereço"
-                        FontAttributes="Bold" />
-
-                    <Entry
-                        x:Name="txtEndereco"
-                        Placeholder="Digite o endereço" />
-
-                    <HorizontalStackLayout
-                        HorizontalOptions="Center"
-                        Spacing="15">
-
-                        <Button
-                            Text="Cancelar"
-                            Clicked="BtnCancelar_Clicked"
-                            BackgroundColor="#999999"
-                            TextColor="White" />
-
-                        <Button
-                            Text="Salvar"
-                            Clicked="BtnSalvar_Clicked"
-                            BackgroundColor="#10A77F"
-                            TextColor="White" />
-
-                    </HorizontalStackLayout>
-
-                </VerticalStackLayout>
-
-            </Border>
+            <Button
+                Text="Cancelar"
+                Clicked="BtnCancelar_Clicked" />
 
         </VerticalStackLayout>
-
     </ScrollView>
 
 </ContentPage>

@@ -14,21 +14,22 @@
             Spacing="15"
             VerticalOptions="Center">
 
-            <Label
-                Text="♡"
-                FontSize="70"
-                HorizontalOptions="Center"
-                TextColor="#20B89A"/>
+            <Image
+                Source="logo.jpg"
+                HeightRequest="150"
+                WidthRequest="150"
+                Aspect="AspectFit"
+                HorizontalOptions="Center" />
 
             <Label
-                Text="ViverSenior"
+                Text="VivaSenior"
                 FontSize="32"
                 FontAttributes="Bold"
                 HorizontalOptions="Center"
                 TextColor="#155263"/>
 
             <Label
-                Text="Cuidado que aproxima.&#10;monitoramento que acolhe."
+                Text="Cuidado que aproxima."
                 FontSize="14"
                 HorizontalTextAlignment="Center"
                 TextColor="Gray"

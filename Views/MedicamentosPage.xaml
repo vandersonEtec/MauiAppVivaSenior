@@ -4,26 +4,30 @@
     x:Class="MauiAppVivaSenior.Views.MedicamentosPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Medicamentos"
+    Title="Medicações"
     BackgroundColor="#F5FAF8">
 
-    <VerticalStackLayout
+    <Grid
         Padding="20"
-        Spacing="15">
+        RowDefinitions="Auto,Auto,Auto,*"
+        RowSpacing="15">
 
         <Label
-            Text="Medicamentos"
+            Grid.Row="0"
+            Text="Medicações"
             FontSize="28"
             FontAttributes="Bold"
             TextColor="#155263" />
 
         <Label
+            Grid.Row="1"
             x:Name="lblNomeIdoso"
             FontSize="16"
             TextColor="Gray" />
 
         <Button
-            Text="+ Cadastrar Medicamento"
+            Grid.Row="2"
+            Text="+ Adicionar Medicação"
             BackgroundColor="#10A77F"
             TextColor="White"
             CornerRadius="12"
@@ -31,6 +35,7 @@
             Clicked="BtnCadastrarMedicamento_Clicked" />
 
         <CollectionView
+            Grid.Row="3"
             x:Name="listaMedicamentos"
             SelectionMode="None">
 
@@ -39,7 +44,8 @@
                 <VerticalStackLayout
                     Padding="20"
                     Spacing="8"
-                    HorizontalOptions="Center">
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
 
                     <Label
                         Text="💊"
@@ -47,14 +53,14 @@
                         HorizontalOptions="Center" />
 
                     <Label
-                        Text="Nenhum medicamento cadastrado"
+                        Text="Nenhuma medicação vinculada"
                         FontSize="18"
                         FontAttributes="Bold"
                         TextColor="#155263"
                         HorizontalOptions="Center" />
 
                     <Label
-                        Text="Cadastre os medicamentos desse idoso."
+                        Text="Adicione uma medicação para este idoso."
                         FontSize="14"
                         TextColor="Gray"
                         HorizontalTextAlignment="Center" />
@@ -74,28 +80,49 @@
                         Padding="15"
                         Margin="0,5">
 
-                        <VerticalStackLayout Spacing="5">
+                        <VerticalStackLayout Spacing="8">
 
                             <Label
                                 Text="{Binding Nome}"
                                 FontSize="18"
                                 FontAttributes="Bold"
                                 TextColor="#155263" />
-
                             <Label
-                                Text="{Binding Dosagem}"
+                                Text="{Binding Dosagem, StringFormat='Dosagem: {0}'}"
                                 FontSize="14"
                                 TextColor="Gray" />
 
                             <Label
-                                Text="{Binding Horario}"
+                                Text="{Binding Horario, StringFormat='Horário: {0}'}"
                                 FontSize="14"
                                 TextColor="Gray" />
 
                             <Label
-                                Text="{Binding Observacao}"
+                                Text="{Binding Observacao, StringFormat='Observação: {0}'}"
                                 FontSize="14"
                                 TextColor="Gray" />
+
+                            <HorizontalStackLayout
+                                    Spacing="10">
+
+                                <Button
+                                    Text="✏️ Editar"
+                                    BackgroundColor="#10A77F"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    HeightRequest="40"
+                                    HorizontalOptions="FillAndExpand"
+                                    Clicked="BtnEditarMedicamento_Clicked" />
+
+                                <Button
+                                    Text="Desvincular"
+                                    BackgroundColor="#D9534F"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    HeightRequest="40"
+                                    HorizontalOptions="FillAndExpand"
+                                    Clicked="BtnExcluirMedicamento_Clicked" />      
+                            </HorizontalStackLayout>
 
                         </VerticalStackLayout>
 
@@ -107,6 +134,6 @@
 
         </CollectionView>
 
-    </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>

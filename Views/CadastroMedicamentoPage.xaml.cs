@@ -3,8 +3,6 @@ using MauiAppVivaSenior.Services;
 
 namespace MauiAppVivaSenior.Views;
 
-// Esta classe controla o cadastro de medicamentos.
-
 public partial class CadastroMedicamentoPage : ContentPage, IQueryAttributable
 {
     private readonly DatabaseService _databaseService;
@@ -41,22 +39,53 @@ public partial class CadastroMedicamentoPage : ContentPage, IQueryAttributable
             return;
         }
 
-        Medicamento medicamento = new Medicamento
+        await _databaseService.InicializarBancoAsync();
+
+        var medicamento =
+            await _databaseService.BuscarMedicamentoPorNomeAsync(
+                txtNome.Text.Trim());
+
+        if (medicamento == null)
+        {
+            medicamento = new Medicamento
+            {
+                Nome = txtNome.Text.Trim()
+            };
+
+            await _databaseService.SalvarMedicamentoAsync(
+                medicamento);
+        }
+
+        var associacao =
+            await _databaseService.BuscarIdosoMedicamentoAsync(
+                _idoso.Id,
+                medicamento.Id);
+
+        if (associacao != null)
+        {
+            await DisplayAlert(
+                "Atenção",
+                "Esse medicamento já está associado a este idoso.",
+                "OK");
+
+            return;
+        }
+
+        IdosoMedicamento idosoMedicamento = new IdosoMedicamento
         {
             IdosoId = _idoso.Id,
-            Nome = txtNome.Text,
+            MedicamentoId = medicamento.Id,
             Dosagem = txtDosagem.Text,
             Horario = tmpHorario.Time.ToString(),
             Observacao = txtObservacao.Text
         };
 
-        await _databaseService.InicializarBancoAsync();
-
-        await _databaseService.SalvarMedicamentoAsync(medicamento);
+        await _databaseService.SalvarIdosoMedicamentoAsync(
+            idosoMedicamento);
 
         await DisplayAlert(
             "Sucesso",
-            "Medicamento cadastrado com sucesso!",
+            "Medicamento associado ao idoso com sucesso!",
             "OK");
 
         await Shell.Current.GoToAsync("..");
