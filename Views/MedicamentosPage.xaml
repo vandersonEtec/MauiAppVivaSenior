@@ -2,36 +2,41 @@
 
 <ContentPage
     x:Class="MauiAppVivaSenior.Views.MedicamentosPage"
+    x:Name="PaginaMedicamentos"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Medicações"
     BackgroundColor="#F5FAF8">
 
     <Grid
-        Padding="20"
+        Padding="16"
         RowDefinitions="Auto,Auto,Auto,*"
-        RowSpacing="15">
+        RowSpacing="10">
 
         <Label
             Grid.Row="0"
-            Text="Medicações"
-            FontSize="28"
+            Text="Medicamentos"
+            FontFamily="OpenSansSemibold"
+            FontSize="24"
             FontAttributes="Bold"
             TextColor="#155263" />
 
         <Label
             Grid.Row="1"
             x:Name="lblNomeIdoso"
-            FontSize="16"
-            TextColor="Gray" />
+            FontFamily="OpenSansRegular"
+            FontSize="15"
+            TextColor="#666666" />
 
         <Button
             Grid.Row="2"
-            Text="+ Adicionar Medicação"
-            BackgroundColor="#10A77F"
+            x:Name="BtnCadastrarMedicamento"
+            Text="+ Cadastrar Medicamento"
+            FontFamily="OpenSansSemibold"
+            FontSize="14"
+            BackgroundColor="#155263"
             TextColor="White"
-            CornerRadius="12"
-            HeightRequest="50"
+            CornerRadius="10"
+            HeightRequest="46"
             Clicked="BtnCadastrarMedicamento_Clicked" />
 
         <CollectionView
@@ -49,21 +54,15 @@
 
                     <Label
                         Text="💊"
-                        FontSize="45"
+                        FontSize="40"
                         HorizontalOptions="Center" />
 
                     <Label
-                        Text="Nenhuma medicação vinculada"
-                        FontSize="18"
-                        FontAttributes="Bold"
+                        Text="Nenhum medicamento cadastrado"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="16"
                         TextColor="#155263"
                         HorizontalOptions="Center" />
-
-                    <Label
-                        Text="Adicione uma medicação para este idoso."
-                        FontSize="14"
-                        TextColor="Gray"
-                        HorizontalTextAlignment="Center" />
 
                 </VerticalStackLayout>
 
@@ -75,53 +74,79 @@
 
                     <Border
                         BackgroundColor="White"
-                        StrokeThickness="0"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="15"
-                        Margin="0,5">
+                        Stroke="#DCE7E5"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="13"
+                        Margin="0,4">
 
-                        <VerticalStackLayout Spacing="8">
+                        <VerticalStackLayout Spacing="5">
 
                             <Label
                                 Text="{Binding Nome}"
+                                FontFamily="OpenSansSemibold"
                                 FontSize="18"
                                 FontAttributes="Bold"
                                 TextColor="#155263" />
+
+                            <Label
+                                Text="{Binding ViaAdministracao, StringFormat='Via: {0}'}"
+                                FontFamily="OpenSansRegular"
+                                FontSize="14"
+                                TextColor="#555555" />
+
+                            <Label
+                                Text="{Binding Status, StringFormat='Status: {0}'}"
+                                FontFamily="OpenSansRegular"
+                                FontSize="14"
+                                TextColor="#555555" />
+
                             <Label
                                 Text="{Binding Dosagem, StringFormat='Dosagem: {0}'}"
+                                FontFamily="OpenSansRegular"
                                 FontSize="14"
-                                TextColor="Gray" />
+                                TextColor="#555555" />
 
                             <Label
                                 Text="{Binding Horario, StringFormat='Horário: {0}'}"
+                                FontFamily="OpenSansRegular"
                                 FontSize="14"
-                                TextColor="Gray" />
+                                TextColor="#555555" />
 
                             <Label
                                 Text="{Binding Observacao, StringFormat='Observação: {0}'}"
+                                FontFamily="OpenSansRegular"
                                 FontSize="14"
-                                TextColor="Gray" />
+                                TextColor="#555555" />
 
                             <HorizontalStackLayout
-                                    Spacing="10">
+                                Spacing="7"
+                                Margin="0,4,0,0">
 
                                 <Button
                                     Text="✏️ Editar"
-                                    BackgroundColor="#10A77F"
+                                    FontFamily="OpenSansSemibold"
+                                    FontSize="13"
+                                    BackgroundColor="#155263"
                                     TextColor="White"
-                                    CornerRadius="10"
+                                    CornerRadius="8"
                                     HeightRequest="40"
                                     HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding Source={x:Reference PaginaMedicamentos}, Path=ExibirEditar}"
                                     Clicked="BtnEditarMedicamento_Clicked" />
 
                                 <Button
-                                    Text="Desvincular"
+                                    Text="🗑️ Desvincular"
+                                    FontFamily="OpenSansSemibold"
+                                    FontSize="13"
                                     BackgroundColor="#D9534F"
                                     TextColor="White"
-                                    CornerRadius="10"
+                                    CornerRadius="8"
                                     HeightRequest="40"
                                     HorizontalOptions="FillAndExpand"
-                                    Clicked="BtnExcluirMedicamento_Clicked" />      
+                                    IsVisible="{Binding Source={x:Reference PaginaMedicamentos}, Path=ExibirExcluir}"
+                                    Clicked="BtnExcluirMedicamento_Clicked" />
+
                             </HorizontalStackLayout>
 
                         </VerticalStackLayout>

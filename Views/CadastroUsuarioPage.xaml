@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppVivaSenior.Views.CadastroUsuarioPage"
+    BackgroundColor="#F5FAF8"
+    Title="Cadastro">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="25"
+            Spacing="12">
+
+            <Label
+                Text="Criar conta"
+                FontFamily="OpenSansSemibold"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#155263"
+                Margin="0,20,0,5" />
+
+            <Label
+                Text="Cadastre seus dados para acessar o VivaSenior."
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                TextColor="#666666"
+                Margin="0,0,0,20" />
+
+            <Label
+                Text="Nome"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
+
+            <Border
+                Stroke="#155263"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="10">
+
+                <Entry
+                    x:Name="txtNome"
+                    Placeholder="Digite seu nome"
+                    PlaceholderColor="#777777"
+                    FontFamily="OpenSansRegular"
+                    FontSize="16"
+                    TextColor="#155263" />
+
+            </Border>
+
+            <Label
+                Text="E-mail"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
+
+            <Border
+                Stroke="#155263"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="10">
+
+                <Entry
+                    x:Name="txtEmail"
+                    Placeholder="Digite seu e-mail"
+                    PlaceholderColor="#777777"
+                    Keyboard="Email"
+                    FontFamily="OpenSansRegular"
+                    FontSize="16"
+                    TextColor="#155263" />
+
+            </Border>
+
+            <Label
+                Text="Senha"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
+
+            <Border
+                Stroke="#155263"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="10">
+
+                <Entry
+                    x:Name="txtSenha"
+                    Placeholder="Digite sua senha"
+                    PlaceholderColor="#777777"
+                    IsPassword="True"
+                    FontFamily="OpenSansRegular"
+                    FontSize="16"
+                    TextColor="#155263" />
+
+            </Border>
+
+            <Label
+                Text="Tipo de usuário"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
+
+            <Border
+                Stroke="#155263"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Padding="5">
+
+                <Picker
+                    x:Name="pckTipo"
+                    Title="Selecione o tipo de usuário"
+                    FontFamily="OpenSansRegular"
+                    FontSize="16"
+                    TextColor="#155263">
+
+                    <Picker.Items>
+                        <x:String>Administrador</x:String>
+                        <x:String>Enfermeiro</x:String>
+                        <x:String>Acompanhante</x:String>
+                    </Picker.Items>
+
+                </Picker>
+
+            </Border>
+
+            <Button
+                Text="CADASTRAR"
+                FontFamily="OpenSansSemibold"
+                FontSize="16"
+                HeightRequest="50"
+                CornerRadius="10"
+                BackgroundColor="#155263"
+                TextColor="White"
+                FontAttributes="Bold"
+                Margin="0,15,0,0"
+                Clicked="BtnCadastrar_Clicked" />
+
+            <Button
+                Text="CANCELAR"
+                FontFamily="OpenSansSemibold"
+                FontSize="15"
+                HeightRequest="45"
+                CornerRadius="10"
+                BackgroundColor="Transparent"
+                BorderColor="#155263"
+                BorderWidth="1"
+                TextColor="#155263"
+                Clicked="BtnCancelar_Clicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

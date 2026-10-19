@@ -24,7 +24,9 @@ public partial class CadastroMedicamentoPage : ContentPage, IQueryAttributable
         }
     }
 
-    private async void BtnSalvar_Clicked(object sender, EventArgs e)
+    private async void BtnSalvar_Clicked(
+        object sender,
+        EventArgs e)
     {
         if (_idoso == null)
             return;
@@ -34,6 +36,26 @@ public partial class CadastroMedicamentoPage : ContentPage, IQueryAttributable
             await DisplayAlert(
                 "Atenção",
                 "Digite o nome do medicamento.",
+                "OK");
+
+            return;
+        }
+
+        if (pckViaAdministracao.SelectedItem == null)
+        {
+            await DisplayAlert(
+                "Atenção",
+                "Selecione a via de administração.",
+                "OK");
+
+            return;
+        }
+
+        if (pckStatus.SelectedItem == null)
+        {
+            await DisplayAlert(
+                "Atenção",
+                "Selecione o status do medicamento.",
                 "OK");
 
             return;
@@ -49,10 +71,27 @@ public partial class CadastroMedicamentoPage : ContentPage, IQueryAttributable
         {
             medicamento = new Medicamento
             {
-                Nome = txtNome.Text.Trim()
+                Nome = txtNome.Text.Trim(),
+
+                ViaAdministracao =
+                    pckViaAdministracao.SelectedItem.ToString(),
+
+                Status =
+                    pckStatus.SelectedItem.ToString()
             };
 
             await _databaseService.SalvarMedicamentoAsync(
+                medicamento);
+        }
+        else
+        {
+            medicamento.ViaAdministracao =
+                pckViaAdministracao.SelectedItem.ToString();
+
+            medicamento.Status =
+                pckStatus.SelectedItem.ToString();
+
+            await _databaseService.AtualizarMedicamentoAsync(
                 medicamento);
         }
 
@@ -71,14 +110,21 @@ public partial class CadastroMedicamentoPage : ContentPage, IQueryAttributable
             return;
         }
 
-        IdosoMedicamento idosoMedicamento = new IdosoMedicamento
-        {
-            IdosoId = _idoso.Id,
-            MedicamentoId = medicamento.Id,
-            Dosagem = txtDosagem.Text,
-            Horario = tmpHorario.Time.ToString(),
-            Observacao = txtObservacao.Text
-        };
+        IdosoMedicamento idosoMedicamento =
+            new IdosoMedicamento
+            {
+                IdosoId = _idoso.Id,
+                MedicamentoId = medicamento.Id,
+
+                Dosagem =
+                    txtDosagem.Text?.Trim() ?? string.Empty,
+
+                Horario =
+                    tmpHorario.Time.ToString(),
+
+                Observacao =
+                    txtObservacao.Text?.Trim() ?? string.Empty
+            };
 
         await _databaseService.SalvarIdosoMedicamentoAsync(
             idosoMedicamento);
@@ -91,7 +137,9 @@ public partial class CadastroMedicamentoPage : ContentPage, IQueryAttributable
         await Shell.Current.GoToAsync("..");
     }
 
-    private async void BtnCancelar_Clicked(object sender, EventArgs e)
+    private async void BtnCancelar_Clicked(
+        object sender,
+        EventArgs e)
     {
         await Shell.Current.GoToAsync("..");
     }

@@ -17,5 +17,9 @@ public class Consulta
 
     public string Horario { get; set; }
 
+    public string Local { get; set; }
+
     public string Observacao { get; set; }
+
+    public string Documentos { get; set; }
 }

@@ -1,26 +1,62 @@
+
 using MauiAppVivaSenior.Models;
 using MauiAppVivaSenior.Services;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MauiAppVivaSenior.Views;
 
-public partial class MedicamentosPage : ContentPage, IQueryAttributable
+public partial class MedicamentosPage : ContentPage, IQueryAttributable, INotifyPropertyChanged
 {
     private readonly DatabaseService _databaseService;
-    private Idoso _idoso;
+
+    private Idoso? _idoso;
+    private string _tipoUsuario = "";
+    private bool _exibirEditar;
+    private bool _exibirExcluir;
+    private bool _verificandoAcesso;
+    private bool _acessoNegado;
+
+    public bool ExibirEditar
+    {
+        get => _exibirEditar;
+        set
+        {
+            _exibirEditar = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public bool ExibirExcluir
+    {
+        get => _exibirExcluir;
+        set
+        {
+            _exibirExcluir = value;
+            OnPropertyChanged();
+        }
+    }
 
     public MedicamentosPage()
     {
         InitializeComponent();
 
+        BindingContext = this;
         _databaseService = new DatabaseService();
+
+        _tipoUsuario = Preferences.Get("UsuarioTipo", "");
+
+        ConfigurarPermissoes();
     }
 
     public void ApplyQueryAttributes(
         IDictionary<string, object> query)
     {
-        if (query.ContainsKey("IdosoSelecionado"))
+        _tipoUsuario = Preferences.Get("UsuarioTipo", "");
+
+        if (query.TryGetValue("IdosoSelecionado", out var valor))
         {
-            _idoso = query["IdosoSelecionado"] as Idoso;
+            _idoso = valor as Idoso;
 
             if (_idoso != null)
             {
@@ -28,21 +64,115 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
                     "Medicamentos de: " + _idoso.Nome;
             }
         }
+
+        ConfigurarPermissoes();
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        if (_idoso != null)
+        if (_verificandoAcesso || _acessoNegado)
+            return;
+
+        _tipoUsuario = Preferences.Get("UsuarioTipo", "");
+
+        ConfigurarPermissoes();
+
+        await VerificarAcessoAsync();
+    }
+
+    private void ConfigurarPermissoes()
+    {
+        bool podeAlterar =
+            _tipoUsuario == "Administrador" ||
+            _tipoUsuario == "Enfermeiro";
+
+        BtnCadastrarMedicamento.IsVisible = podeAlterar;
+        ExibirEditar = podeAlterar;
+        ExibirExcluir = podeAlterar;
+    }
+
+    private async Task VerificarAcessoAsync()
+    {
+        if (_idoso == null)
         {
+            _acessoNegado = true;
+
+            await DisplayAlert(
+                "Atenção",
+                "Nenhum idoso foi selecionado.",
+                "OK");
+
+            await Shell.Current.GoToAsync("..");
+            return;
+        }
+
+        _verificandoAcesso = true;
+
+        try
+        {
+            await _databaseService.InicializarBancoAsync();
+
+            if (_tipoUsuario == "Acompanhante")
+            {
+                int usuarioId = Preferences.Get("UsuarioId", 0);
+
+                if (usuarioId <= 0)
+                {
+                    await NegarAcessoAsync();
+                    return;
+                }
+
+                var idososPermitidos =
+                    await _databaseService.ListarIdososPorUsuarioAsync(
+                        usuarioId);
+
+                bool temAcesso = idososPermitidos.Any(
+                    i => i.Id == _idoso.Id);
+
+                if (!temAcesso)
+                {
+                    await NegarAcessoAsync();
+                    return;
+                }
+            }
+
             await CarregarMedicamentosAsync();
         }
+        catch
+        {
+            _acessoNegado = true;
+
+            await DisplayAlert(
+                "Erro",
+                "Não foi possível verificar o acesso aos medicamentos.",
+                "OK");
+
+            await Shell.Current.GoToAsync("..");
+        }
+        finally
+        {
+            _verificandoAcesso = false;
+        }
+    }
+
+    private async Task NegarAcessoAsync()
+    {
+        _acessoNegado = true;
+
+        await DisplayAlert(
+            "Acesso negado",
+            "Você não tem permissão para visualizar os medicamentos deste idoso.",
+            "OK");
+
+        await Shell.Current.GoToAsync("..");
     }
 
     private async Task CarregarMedicamentosAsync()
     {
-        await _databaseService.InicializarBancoAsync();
+        if (_idoso == null)
+            return;
 
         var associacoes =
             await _databaseService.ListarIdosoMedicamentosAsync(
@@ -58,15 +188,18 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
 
             if (medicamento != null)
             {
-                medicamentos.Add(new MedicamentoExibicao
-                {
-                    Id = associacao.Id,
-                    MedicamentoId = associacao.MedicamentoId,
-                    Nome = medicamento.Nome,
-                    Dosagem = associacao.Dosagem,
-                    Horario = associacao.Horario,
-                    Observacao = associacao.Observacao
-                });
+                medicamentos.Add(
+                    new MedicamentoExibicao
+                    {
+                        Id = associacao.Id,
+                        MedicamentoId = associacao.MedicamentoId,
+                        Nome = medicamento.Nome,
+                        ViaAdministracao = medicamento.ViaAdministracao,
+                        Status = medicamento.Status,
+                        Dosagem = associacao.Dosagem,
+                        Horario = associacao.Horario,
+                        Observacao = associacao.Observacao
+                    });
             }
         }
 
@@ -74,9 +207,19 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
     }
 
     private async void BtnCadastrarMedicamento_Clicked(
-    object sender,
-    EventArgs e)
+        object sender,
+        EventArgs e)
     {
+        if (_tipoUsuario == "Acompanhante")
+        {
+            await DisplayAlert(
+                "Acesso",
+                "O perfil Acompanhante pode apenas visualizar os medicamentos.",
+                "OK");
+
+            return;
+        }
+
         if (_idoso == null)
             return;
 
@@ -84,34 +227,39 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
             nameof(CatalogoMedicamentosPage),
             new Dictionary<string, object>
             {
-            { "IdosoSelecionado", _idoso }
+                { "IdosoSelecionado", _idoso }
             });
     }
 
     private async void BtnEditarMedicamento_Clicked(
-    object sender,
-    EventArgs e)
+        object sender,
+        EventArgs e)
     {
-        var botao = sender as Button;
+        if (_tipoUsuario == "Acompanhante")
+        {
+            await DisplayAlert(
+                "Acesso",
+                "O perfil Acompanhante não pode alterar medicamentos.",
+                "OK");
 
-        if (botao == null)
+            return;
+        }
+
+        if (_idoso == null)
             return;
 
-        var medicamento =
-            botao.BindingContext as MedicamentoExibicao;
-
-        if (medicamento == null)
+        if (sender is not Button botao ||
+            botao.BindingContext is not MedicamentoExibicao medicamento)
             return;
 
         await _databaseService.InicializarBancoAsync();
 
-        var associacao =
-            await _databaseService
-                .ListarIdosoMedicamentosAsync(_idoso.Id);
+        var associacoes =
+            await _databaseService.ListarIdosoMedicamentosAsync(
+                _idoso.Id);
 
-        var idosoMedicamento =
-            associacao.FirstOrDefault(
-                im => im.Id == medicamento.Id);
+        var idosoMedicamento = associacoes.FirstOrDefault(
+            im => im.Id == medicamento.Id);
 
         if (idosoMedicamento == null)
             return;
@@ -120,48 +268,35 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
             nameof(EditarMedicamentoPage),
             new Dictionary<string, object>
             {
-            {
-                "IdosoMedicamento",
-                idosoMedicamento
-            },
-            {
-                "NomeMedicamento",
-                medicamento.Nome
-            }
+                { "IdosoMedicamento", idosoMedicamento },
+                { "NomeMedicamento", medicamento.Nome }
             });
     }
-    public class MedicamentoExibicao
-    {
-        public int Id { get; set; }
 
-        public int MedicamentoId { get; set; }
-
-        public string Nome { get; set; }
-
-        public string Dosagem { get; set; }
-
-        public string Horario { get; set; }
-
-        public string Observacao { get; set; }
-    }
     private async void BtnExcluirMedicamento_Clicked(
-    object sender,
-    EventArgs e)
+        object sender,
+        EventArgs e)
     {
-        var botao = sender as Button;
+        if (_tipoUsuario == "Acompanhante")
+        {
+            await DisplayAlert(
+                "Acesso",
+                "O perfil Acompanhante pode apenas visualizar os medicamentos.",
+                "OK");
 
-        if (botao == null)
+            return;
+        }
+
+        if (_idoso == null)
             return;
 
-        var medicamento =
-            botao.BindingContext as MedicamentoExibicao;
-
-        if (medicamento == null)
+        if (sender is not Button botao ||
+            botao.BindingContext is not MedicamentoExibicao medicamento)
             return;
 
         bool confirmar = await DisplayAlert(
-            "Excluir medicamento",
-            "Deseja excluir este medicamento deste idoso?",
+            "Desvincular medicamento",
+            "Deseja desvincular este medicamento deste idoso?",
             "Sim",
             "Não");
 
@@ -170,17 +305,12 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
 
         await _databaseService.InicializarBancoAsync();
 
-        var medicamentoBanco =
-            await _databaseService.BuscarMedicamentoPorNomeAsync(
-                medicamento.Nome);
+        var associacoes =
+            await _databaseService.ListarIdosoMedicamentosAsync(
+                _idoso.Id);
 
-        if (medicamentoBanco == null)
-            return;
-
-        var associacao =
-            await _databaseService.BuscarIdosoMedicamentoAsync(
-                _idoso.Id,
-                medicamentoBanco.Id);
+        var associacao = associacoes.FirstOrDefault(
+            im => im.Id == medicamento.Id);
 
         if (associacao == null)
             return;
@@ -189,5 +319,34 @@ public partial class MedicamentosPage : ContentPage, IQueryAttributable
             associacao);
 
         await CarregarMedicamentosAsync();
+    }
+
+    public class MedicamentoExibicao
+    {
+        public int Id { get; set; }
+
+        public int MedicamentoId { get; set; }
+
+        public string Nome { get; set; }
+
+        public string ViaAdministracao { get; set; }
+
+        public string Status { get; set; }
+
+        public string Dosagem { get; set; }
+
+        public string Horario { get; set; }
+
+        public string Observacao { get; set; }
+    }
+
+    public new event PropertyChangedEventHandler? PropertyChanged;
+
+    protected new void OnPropertyChanged(
+        [CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(
+            this,
+            new PropertyChangedEventArgs(propertyName));
     }
 }

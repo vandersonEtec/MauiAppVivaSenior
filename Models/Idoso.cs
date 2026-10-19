@@ -17,6 +17,10 @@ public class Idoso
 
     public string Endereco { get; set; }
 
+    public string Genero { get; set; }
+
+    public string ContatoEmergencia { get; set; }
+
     public string Observacoes { get; set; }
 
     [Ignore]

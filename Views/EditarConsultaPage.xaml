@@ -4,82 +4,161 @@
     x:Class="MauiAppVivaSenior.Views.EditarConsultaPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Editar Consulta"
     BackgroundColor="#F5FAF8">
 
     <ScrollView>
+
         <VerticalStackLayout
-            Padding="20"
-            Spacing="15">
+            Padding="16"
+            Spacing="9">
 
             <Label
                 Text="Editar Consulta"
-                FontSize="28"
+                FontFamily="OpenSansSemibold"
+                FontSize="24"
                 FontAttributes="Bold"
-                TextColor="#155263" />
+                TextColor="#155263"
+                Margin="0,0,0,4" />
 
-            <Label
-                Text="Especialidade"
-                FontAttributes="Bold"
-                TextColor="#155263" />
+            <Border
+                BackgroundColor="White"
+                Stroke="#DCE7E5"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 12"
+                Padding="14">
 
-            <Entry
-                x:Name="txtEspecialidade"
-                Placeholder="Ex.: Cardiologia" />
+                <VerticalStackLayout
+                    Spacing="8">
 
-            <Label
-                Text="Médico"
-                FontAttributes="Bold"
-                TextColor="#155263" />
+                    <Label
+                        Text="Especialidade"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
-            <Entry
-                x:Name="txtMedico"
-                Placeholder="Nome do médico" />
+                    <Entry
+                        x:Name="txtEspecialidade"
+                        Placeholder="Ex.: Cardiologia"
+                        PlaceholderColor="#888888"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42" />
 
-            <Label
-                Text="Data"
-                FontAttributes="Bold"
-                TextColor="#155263" />
+                    <Label
+                        Text="Médico"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
-            <DatePicker
-                x:Name="dtpData" />
+                    <Entry
+                        x:Name="txtMedico"
+                        Placeholder="Nome do médico"
+                        PlaceholderColor="#888888"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42" />
 
-            <Label
-                Text="Horário"
-                FontAttributes="Bold"
-                TextColor="#155263" />
+                    <Label
+                        Text="Data da consulta"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
-            <TimePicker
-                x:Name="tmpHorario" />
+                    <DatePicker
+                        x:Name="dtpData"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42" />
 
-            <Label
-                Text="Observação"
-                FontAttributes="Bold"
-                TextColor="#155263" />
+                    <Label
+                        Text="Horário"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
-            <Editor
-                x:Name="txtObservacao"
-                Placeholder="Digite uma observação"
-                AutoSize="TextChanges"
-                HeightRequest="100" />
+                    <TimePicker
+                        x:Name="tmpHorario"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42" />
+
+                    <Label
+                        Text="Local"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
+
+                    <Entry
+                        x:Name="txtLocal"
+                        Placeholder="Ex.: Hospital, clínica ou consultório"
+                        PlaceholderColor="#888888"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42" />
+
+                    <Label
+                        Text="Observação"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
+
+                    <Editor
+                        x:Name="txtObservacao"
+                        Placeholder="Digite uma observação"
+                        PlaceholderColor="#888888"
+                        AutoSize="TextChanges"
+                        HeightRequest="70"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263" />
+
+                    <Label
+                        Text="Documentos"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
+
+                    <Editor
+                        x:Name="txtDocumentos"
+                        Placeholder="Informe os documentos relacionados à consulta"
+                        PlaceholderColor="#888888"
+                        AutoSize="TextChanges"
+                        HeightRequest="70"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263" />
+
+                </VerticalStackLayout>
+
+            </Border>
 
             <Button
-                Text="Salvar"
-                BackgroundColor="#10A77F"
+                Text="SALVAR ALTERAÇÕES"
+                FontFamily="OpenSansSemibold"
+                FontSize="14"
+                BackgroundColor="#155263"
                 TextColor="White"
-                CornerRadius="12"
-                HeightRequest="50"
+                CornerRadius="8"
+                HeightRequest="44"
                 Clicked="BtnSalvar_Clicked" />
 
             <Button
-                Text="Cancelar"
+                Text="CANCELAR"
+                FontFamily="OpenSansSemibold"
+                FontSize="14"
                 BackgroundColor="#777777"
                 TextColor="White"
-                CornerRadius="12"
-                HeightRequest="50"
+                CornerRadius="8"
+                HeightRequest="44"
                 Clicked="BtnCancelar_Clicked" />
 
         </VerticalStackLayout>
+
     </ScrollView>
 
 </ContentPage>

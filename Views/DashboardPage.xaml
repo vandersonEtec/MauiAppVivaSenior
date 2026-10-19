@@ -1,170 +1,100 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<!-- Esta página apresenta o painel principal do aplicativo-->
-
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MauiAppVivaSenior.Views.DashboardPage"
-    Title="VivaSenior"
     BackgroundColor="#F5FAF8">
 
     <ScrollView>
-
         <VerticalStackLayout
             Padding="20"
-            Spacing="18">
+            Spacing="15">
 
-            <!-- Cabeçalho -->
-            <Grid ColumnDefinitions="*,Auto">
-
-                <VerticalStackLayout>
-
-                    <Label
-                        Text="Olá!"
-                        FontSize="16"
-                        TextColor="Gray" />
-
-                    <Label
-                        Text="Bem-vindo ao VivaSenior"
-                        FontSize="24"
-                        FontAttributes="Bold"
-                        TextColor="#155263" />
-
-                </VerticalStackLayout>
-
-                <Image
-                    Source="Logo_VivaSenior.jpg"
-                    HeightRequest="130"
-                    WidthRequest="130"
-                    Aspect="AspectFit"
-                    HorizontalOptions="Center" />
-
-            </Grid>
-
-            <!-- Resumo -->
-            <Border
-                BackgroundColor="#DDF5ED"
-                StrokeThickness="0"
-                StrokeShape="RoundRectangle 15"
-                Padding="18">
-
-                <VerticalStackLayout Spacing="5">
-
-                    <Label
-                        Text="Resumo do dia"
-                        FontSize="19"
-                        FontAttributes="Bold"
-                        TextColor="#155263" />
-
-                    <Label
-                        Text="Acompanhe os cuidados dos idosos."
-                        FontSize="14"
-                        TextColor="#52706B" />
-
-                </VerticalStackLayout>
-
-            </Border>
-
-            <!-- Acessos rápidos -->
+            <Image
+                Source="logo.jpg"
+                HeightRequest="150"
+                WidthRequest="150"
+                Aspect="AspectFit"
+                HorizontalOptions="Center" />
 
             <Label
-                Text="Acessos rápidos"
-                FontSize="19"
+                Text="VivaSenior"
+                FontFamily="OpenSansSemibold"
+                FontSize="28"
                 FontAttributes="Bold"
+                HorizontalOptions="Center"
                 TextColor="#155263" />
 
-            <Grid
-                ColumnDefinitions="*,*"
-                RowDefinitions="Auto,Auto"
-                ColumnSpacing="12"
-                RowSpacing="12">
-
-                <Button
-                    Text="👴&#10;Idosos"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    HeightRequest="100"
-                    BackgroundColor="White"
-                    TextColor="#155263"
-                    CornerRadius="15"
-                    Clicked="BtnIdosos_Clicked" />
-
-                <Button
-                    Text="💊&#10;Medicamentos"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    HeightRequest="100"
-                    BackgroundColor="White"
-                    TextColor="#155263"
-                    CornerRadius="15"   
-                    Clicked="BtnMedicamentos_Clicked" />
-
-                <Button
-                    Text="📅&#10;Consultas"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    HeightRequest="100"
-                    BackgroundColor="White"
-                    TextColor="#155263"
-                    CornerRadius="15"
-                    Clicked="BtnConsultas_Clicked" />
-
-                <Button
-                    Text="📝&#10;Observações"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    HeightRequest="100"
-                    BackgroundColor="White"
-                    TextColor="#155263"
-                    CornerRadius="15"
-                    Clicked="BtnObservacoes_Clicked" />
-
-            </Grid>
-
-            <!-- Próximas atividades -->
+            <Label
+                Text="Cuidado que aproxima."
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                TextColor="#155263"
+                Margin="0,0,0,10" />
 
             <Label
-                Text="Próximas atividades"
-                FontSize="19"
+                Text="Menu principal"
+                FontFamily="OpenSansSemibold"
+                FontSize="20"
                 FontAttributes="Bold"
                 TextColor="#155263"
-                Margin="0,10,0,0" />
+                Margin="0,5,0,0" />
 
-            <Border
-                BackgroundColor="White"
-                StrokeThickness="0"
-                StrokeShape="RoundRectangle 15"
-                Padding="15">
+            <Button
+                Text="👴  Idosos"
+                FontFamily="OpenSansSemibold"
+                FontSize="16"
+                HeightRequest="52"
+                CornerRadius="10"
+                BackgroundColor="#155263"
+                TextColor="White"
+                Clicked="BtnIdosos_Clicked" />
 
-                <HorizontalStackLayout Spacing="15">
+            <Button
+                Text="💊  Medicamentos"
+                FontFamily="OpenSansSemibold"
+                FontSize="16"
+                HeightRequest="52"
+                CornerRadius="10"
+                BackgroundColor="#155263"
+                TextColor="White"
+                Clicked="BtnMedicamentos_Clicked" />
 
-                    <Label
-                        Text="📅"
-                        FontSize="30"
-                        VerticalOptions="Center" />
+            <Button
+                Text="📅  Consultas"
+                FontFamily="OpenSansSemibold"
+                FontSize="16"
+                HeightRequest="52"
+                CornerRadius="10"
+                BackgroundColor="#155263"
+                TextColor="White"
+                Clicked="BtnConsultas_Clicked" />
 
-                    <VerticalStackLayout>
+            <Button
+                Text="📝  Observações"
+                FontFamily="OpenSansSemibold"
+                FontSize="16"
+                HeightRequest="52"
+                CornerRadius="10"
+                BackgroundColor="#155263"
+                TextColor="White"
+                Clicked="BtnObservacoes_Clicked" />
 
-                        <Label
-                            Text="Nenhuma atividade"
-                            FontSize="16"
-                            FontAttributes="Bold"
-                            TextColor="#155263" />
-
-                        <Label
-                            Text="As próximas consultas aparecerão aqui."
-                            FontSize="13"
-                            TextColor="Gray" />
-
-                    </VerticalStackLayout>
-
-                </HorizontalStackLayout>
-
-            </Border>
+            <Button
+                x:Name="btnAssociarAcompanhantes"
+                Text="👥  Associar Acompanhantes"
+                FontFamily="OpenSansSemibold"
+                FontSize="16"
+                HeightRequest="52"
+                CornerRadius="10"
+                BackgroundColor="#DCE9E8"
+                TextColor="#155263"
+                IsVisible="False"
+                Clicked="BtnAssociarAcompanhantes_Clicked" />
 
         </VerticalStackLayout>
-
     </ScrollView>
 
 </ContentPage>

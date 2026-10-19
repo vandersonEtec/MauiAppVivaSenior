@@ -1,52 +1,178 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="MauiAppVivaSenior.Views.CadastroIdosoPage">
+    x:Class="MauiAppVivaSenior.Views.CadastroIdosoPage"
+    BackgroundColor="#F5FAF8">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+
+        <VerticalStackLayout
+            Padding="16"
+            Spacing="8">
 
             <Label
                 Text="Cadastro de Idoso"
-                FontSize="24"
-                FontAttributes="Bold" />
+                FontFamily="OpenSansSemibold"
+                FontSize="23"
+                FontAttributes="Bold"
+                TextColor="#155263"
+                Margin="0,0,0,4" />
+
+            <Label
+                Text="Nome completo"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
 
             <Entry
                 x:Name="txtNome"
-                Placeholder="Nome completo" />
+                Placeholder="Digite o nome completo"
+                PlaceholderColor="#888888"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#155263"
+                HeightRequest="42" />
+
+            <Label
+                Text="Data de nascimento"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
 
             <DatePicker
-                x:Name="dtpDataNascimento" />
+                x:Name="dtpDataNascimento"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#155263"
+                HeightRequest="42" />
+
+            <Label
+                Text="CPF"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
 
             <Entry
                 x:Name="txtCPF"
-                Placeholder="CPF" />
+                Placeholder="Digite o CPF"
+                PlaceholderColor="#888888"
+                Keyboard="Numeric"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#155263"
+                HeightRequest="42" />
+
+            <Label
+                Text="Telefone"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
 
             <Entry
                 x:Name="txtTelefone"
-                Placeholder="Telefone"
-                Keyboard="Telephone" />
+                Placeholder="Digite o telefone"
+                PlaceholderColor="#888888"
+                Keyboard="Telephone"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#155263"
+                HeightRequest="42" />
+
+            <Label
+                Text="Endereço"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
 
             <Entry
                 x:Name="txtEndereco"
-                Placeholder="Endereço" />
+                Placeholder="Digite o endereço"
+                PlaceholderColor="#888888"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#155263"
+                HeightRequest="42" />
+
+            <Label
+                Text="Gênero"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
+
+            <Picker
+                x:Name="pckGenero"
+                Title="Selecione o gênero"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#155263"
+                HeightRequest="60">
+
+                <Picker.Items>
+                    <x:String>Feminino</x:String>
+                    <x:String>Masculino</x:String>
+                    <x:String>Outro</x:String>
+                    <x:String>Não informado</x:String>
+                </Picker.Items>
+
+            </Picker>
+
+            <Label
+                Text="Contato de emergência"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
+
+            <Entry
+                x:Name="txtContatoEmergencia"
+                Placeholder="Digite o nome e telefone do contato"
+                PlaceholderColor="#888888"
+                Keyboard="Telephone"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#155263"
+                HeightRequest="42" />
+
+            <Label
+                Text="Observações"
+                FontFamily="OpenSansSemibold"
+                FontSize="13"
+                TextColor="#155263" />
 
             <Editor
                 x:Name="txtObservacoes"
-                Placeholder="Observações"
+                Placeholder="Digite alguma observação"
+                PlaceholderColor="#888888"
                 AutoSize="TextChanges"
-                HeightRequest="100" />
+                HeightRequest="70"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#155263" />
 
             <Button
-                Text="Salvar"
+                Text="SALVAR"
+                FontFamily="OpenSansSemibold"
+                FontSize="14"
+                BackgroundColor="#155263"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="44"
+                Margin="0,5,0,0"
                 Clicked="BtnSalvar_Clicked" />
 
             <Button
-                Text="Cancelar"
+                Text="CANCELAR"
+                FontFamily="OpenSansSemibold"
+                FontSize="14"
+                BackgroundColor="#777777"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="44"
                 Clicked="BtnCancelar_Clicked" />
 
         </VerticalStackLayout>
+
     </ScrollView>
 
 </ContentPage>

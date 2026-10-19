@@ -1,37 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
     x:Class="MauiAppVivaSenior.Views.ConsultasPage"
+    x:Name="PaginaConsultas"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Consultas"
     BackgroundColor="#F5FAF8">
 
     <Grid
-        Padding="20"
+        Padding="16"
         RowDefinitions="Auto,Auto,Auto,*"
-        RowSpacing="15">
+        RowSpacing="10">
 
         <Label
             Grid.Row="0"
             Text="Consultas"
-            FontSize="28"
+            FontFamily="OpenSansSemibold"
+            FontSize="24"
             FontAttributes="Bold"
             TextColor="#155263" />
 
         <Label
             Grid.Row="1"
             x:Name="lblNomeIdoso"
-            FontSize="16"
-            TextColor="Gray" />
+            FontFamily="OpenSansRegular"
+            FontSize="15"
+            TextColor="#666666" />
 
         <Button
             Grid.Row="2"
+            x:Name="BtnCadastrarConsulta"
             Text="+ Cadastrar Consulta"
-            BackgroundColor="#10A77F"
+            FontFamily="OpenSansSemibold"
+            FontSize="14"
+            BackgroundColor="#155263"
             TextColor="White"
-            CornerRadius="12"
-            HeightRequest="50"
+            CornerRadius="9"
+            HeightRequest="46"
+            IsVisible="{Binding ExibirCadastrar}"
             Clicked="BtnCadastrarConsulta_Clicked" />
 
         <CollectionView
@@ -40,6 +46,7 @@
             SelectionMode="None">
 
             <CollectionView.EmptyView>
+
                 <VerticalStackLayout
                     Padding="20"
                     Spacing="8"
@@ -48,78 +55,106 @@
 
                     <Label
                         Text="📅"
-                        FontSize="45"
+                        FontSize="40"
                         HorizontalOptions="Center" />
 
                     <Label
                         Text="Nenhuma consulta cadastrada"
-                        FontSize="18"
-                        FontAttributes="Bold"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="16"
                         TextColor="#155263"
                         HorizontalOptions="Center" />
 
                 </VerticalStackLayout>
+
             </CollectionView.EmptyView>
 
             <CollectionView.ItemTemplate>
+
                 <DataTemplate>
 
                     <Border
                         BackgroundColor="White"
-                        StrokeThickness="0"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="15"
-                        Margin="0,5">
+                        Stroke="#DCE7E5"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="13"
+                        Margin="0,4">
 
-                        <VerticalStackLayout Spacing="7">
+                        <VerticalStackLayout
+                            Spacing="5">
 
                             <Label
                                 Text="{Binding Especialidade}"
-                                FontSize="19"
+                                FontFamily="OpenSansSemibold"
+                                FontSize="18"
                                 FontAttributes="Bold"
                                 TextColor="#155263" />
 
                             <Label
                                 Text="{Binding Medico, StringFormat='Médico: {0}'}"
-                                FontSize="15"
-                                TextColor="Gray" />
+                                FontFamily="OpenSansRegular"
+                                FontSize="14"
+                                TextColor="#555555" />
 
                             <Label
                                 Text="{Binding Data, StringFormat='Data: {0:dd/MM/yyyy}'}"
-                                FontSize="15"
-                                TextColor="Gray" />
+                                FontFamily="OpenSansRegular"
+                                FontSize="14"
+                                TextColor="#555555" />
 
                             <Label
                                 Text="{Binding Horario, StringFormat='Horário: {0}'}"
-                                FontSize="15"
-                                TextColor="Gray" />
+                                FontFamily="OpenSansRegular"
+                                FontSize="14"
+                                TextColor="#555555" />
+
+                            <Label
+                                Text="{Binding Local, StringFormat='Local: {0}'}"
+                                FontFamily="OpenSansRegular"
+                                FontSize="14"
+                                TextColor="#555555" />
 
                             <Label
                                 Text="{Binding Observacao, StringFormat='Observação: {0}'}"
-                                FontSize="15"
-                                TextColor="Gray" />
+                                FontFamily="OpenSansRegular"
+                                FontSize="14"
+                                TextColor="#555555" />
+
+                            <Label
+                                Text="{Binding Documentos, StringFormat='Documentos: {0}'}"
+                                FontFamily="OpenSansRegular"
+                                FontSize="14"
+                                TextColor="#555555" />
 
                             <HorizontalStackLayout
-                                Spacing="10"
-                                Margin="0,5,0,0">
+                                Spacing="7"
+                                Margin="0,4,0,0">
 
                                 <Button
                                     Text="✏️ Editar"
-                                    BackgroundColor="#10A77F"
+                                    FontFamily="OpenSansSemibold"
+                                    FontSize="13"
+                                    BackgroundColor="#155263"
                                     TextColor="White"
-                                    CornerRadius="10"
+                                    CornerRadius="8"
                                     HeightRequest="40"
                                     HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding Source={x:Reference PaginaConsultas}, Path=ExibirEditar}"
                                     Clicked="BtnEditarConsulta_Clicked" />
 
                                 <Button
                                     Text="🗑️ Excluir"
+                                    FontFamily="OpenSansSemibold"
+                                    FontSize="13"
                                     BackgroundColor="#D9534F"
                                     TextColor="White"
-                                    CornerRadius="10"
+                                    CornerRadius="8"
                                     HeightRequest="40"
                                     HorizontalOptions="FillAndExpand"
+                                    IsVisible="{Binding Source={x:Reference PaginaConsultas}, Path=ExibirExcluir}"
                                     Clicked="BtnExcluirConsulta_Clicked" />
+
                             </HorizontalStackLayout>
 
                         </VerticalStackLayout>
@@ -127,6 +162,7 @@
                     </Border>
 
                 </DataTemplate>
+
             </CollectionView.ItemTemplate>
 
         </CollectionView>

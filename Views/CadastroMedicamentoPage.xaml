@@ -1,87 +1,172 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<!-- Esta página apresenta o formulário para cadastrar um medicamento.-->
-    
 <ContentPage
     x:Class="MauiAppVivaSenior.Views.CadastroMedicamentoPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Cadastro de Medicamento"
-    BackgroundColor="#F5F7FA">
+    BackgroundColor="#F5FAF8">
 
     <ScrollView>
 
         <VerticalStackLayout
-            Padding="25"
-            Spacing="15">
+            Padding="16"
+            Spacing="10">
 
             <Label
-                Text="Cadastro de Medicamento"
-                FontSize="28"
+                Text="Cadastrar Medicação"
+                FontFamily="OpenSansSemibold"
+                FontSize="24"
                 FontAttributes="Bold"
-                HorizontalOptions="Center"
-                TextColor="#10A77F" />
+                TextColor="#155263" />
 
             <Label
-                Text="Preencha os dados do medicamento"
-                FontSize="16"
-                HorizontalOptions="Center"
-                TextColor="Gray" />
+                Text="Informe os dados da medicação"
+                FontFamily="OpenSansRegular"
+                FontSize="14"
+                TextColor="#666666"
+                Margin="0,0,0,5" />
 
             <Border
                 BackgroundColor="White"
-                StrokeThickness="0"
-                Padding="20">
+                Stroke="#DCE7E5"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 12"
+                Padding="14">
 
-                <VerticalStackLayout Spacing="15">
+                <VerticalStackLayout Spacing="8">
 
                     <Label
-                        Text="Nome do medicamento"
-                        FontAttributes="Bold" />
+                        Text="Nome da medicação"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Entry
                         x:Name="txtNome"
-                        Placeholder="Digite o nome do medicamento" />
+                        Placeholder="Ex.: Dipirona"
+                        PlaceholderColor="#888888"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42" />
+
+                    <Label
+                        Text="Via de administração"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
+
+                    <Picker
+                        x:Name="pckViaAdministracao"
+                        Title="Selecione a via"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42">
+
+                        <Picker.Items>
+                            <x:String>Oral</x:String>
+                            <x:String>Injetável</x:String>
+                            <x:String>Tópica</x:String>
+                            <x:String>Ocular</x:String>
+                            <x:String>Nasal</x:String>
+                            <x:String>Inalatória</x:String>
+                            <x:String>Outra</x:String>
+                        </Picker.Items>
+
+                    </Picker>
+
+                    <Label
+                        Text="Status"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
+
+                    <Picker
+                        x:Name="pckStatus"
+                        Title="Selecione o status"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42">
+
+                        <Picker.Items>
+                            <x:String>Ativo</x:String>
+                            <x:String>Inativo</x:String>
+                        </Picker.Items>
+
+                    </Picker>
 
                     <Label
                         Text="Dosagem"
-                        FontAttributes="Bold" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Entry
                         x:Name="txtDosagem"
-                        Placeholder="Ex.: 01 Comprimido" />
+                        Placeholder="Ex.: 01 comprimido"
+                        PlaceholderColor="#888888"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42" />
 
                     <Label
-                        Text="Horário"
-                        FontAttributes="Bold" />
+                        Text="Horário da medicação"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <TimePicker
-                        x:Name="tmpHorario" />
+                        x:Name="tmpHorario"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263"
+                        HeightRequest="42" />
 
                     <Label
                         Text="Observação"
-                        FontAttributes="Bold" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Editor
                         x:Name="txtObservacao"
-                        Placeholder="Digite uma observação"
-                        HeightRequest="100" />
+                        Placeholder="Ex.: Tomar após as refeições"
+                        PlaceholderColor="#888888"
+                        AutoSize="TextChanges"
+                        HeightRequest="70"
+                        FontFamily="OpenSansRegular"
+                        FontSize="14"
+                        TextColor="#155263" />
 
                     <HorizontalStackLayout
                         HorizontalOptions="Center"
-                        Spacing="15">
+                        Spacing="8"
+                        Margin="0,5,0,0">
 
                         <Button
-                            Text="Cancelar"
-                            Clicked="BtnCancelar_Clicked"
-                            BackgroundColor="#999999"
-                            TextColor="White" />
+                            Text="CANCELAR"
+                            FontFamily="OpenSansSemibold"
+                            FontSize="13"
+                            BackgroundColor="#777777"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="44"
+                            Padding="15,0"
+                            Clicked="BtnCancelar_Clicked" />
 
                         <Button
-                            Text="Salvar"
-                            Clicked="BtnSalvar_Clicked"
-                            BackgroundColor="#10A77F"
-                            TextColor="White" />
+                            Text="SALVAR MEDICAÇÃO"
+                            FontFamily="OpenSansSemibold"
+                            FontSize="13"
+                            BackgroundColor="#155263"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="44"
+                            Padding="15,0"
+                            Clicked="BtnSalvar_Clicked" />
 
                     </HorizontalStackLayout>
 

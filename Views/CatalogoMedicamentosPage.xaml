@@ -4,33 +4,41 @@
     x:Class="MauiAppVivaSenior.Views.CatalogoMedicamentosPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Medicamentos"
     BackgroundColor="#F5FAF8">
 
-    <VerticalStackLayout
-        Padding="20"
-        Spacing="15">
+    <Grid
+        Padding="16"
+        RowDefinitions="Auto,Auto,Auto,*"
+        RowSpacing="10">
 
         <Label
+            Grid.Row="0"
             Text="Catálogo de Medicamentos"
-            FontSize="28"
+            FontFamily="OpenSansSemibold"
+            FontSize="24"
             FontAttributes="Bold"
             TextColor="#155263" />
 
         <Label
-            Text="Medicamentos cadastrados no sistema"
-            FontSize="15"
-            TextColor="Gray" />
+            Grid.Row="1"
+            Text="Selecione uma medicação ou cadastre uma nova"
+            FontFamily="OpenSansRegular"
+            FontSize="14"
+            TextColor="#666666" />
 
         <Button
-            Text="+ Cadastrar Medicamento"
-            BackgroundColor="#10A77F"
+            Grid.Row="2"
+            Text="+ Cadastrar Medicação"
+            FontFamily="OpenSansSemibold"
+            FontSize="14"
+            BackgroundColor="#155263"
             TextColor="White"
-            CornerRadius="12"
-            HeightRequest="50"
+            CornerRadius="9"
+            HeightRequest="46"
             Clicked="BtnCadastrarMedicamento_Clicked" />
 
         <CollectionView
+            Grid.Row="3"
             x:Name="listaMedicamentos"
             SelectionMode="Single"
             SelectionChanged="MedicamentoSelecionado">
@@ -38,19 +46,20 @@
             <CollectionView.EmptyView>
 
                 <VerticalStackLayout
-                    Padding="20"
+                    Padding="8"
                     Spacing="8"
-                    HorizontalOptions="Center">
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
 
                     <Label
                         Text="💊"
-                        FontSize="45"
+                        FontSize="40"
                         HorizontalOptions="Center" />
 
                     <Label
-                        Text="Nenhum medicamento cadastrado"
-                        FontSize="18"
-                        FontAttributes="Bold"
+                        Text="Nenhuma medicação cadastrada"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="16"
                         TextColor="#155263"
                         HorizontalOptions="Center" />
 
@@ -64,16 +73,29 @@
 
                     <Border
                         BackgroundColor="White"
-                        StrokeThickness="0"
-                        StrokeShape="RoundRectangle 15"
-                        Padding="15"
-                        Margin="0,5">
+                        Stroke="#DCE7E5"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="14"
+                        Margin="0,4">
 
-                        <Label
-                            Text="{Binding Nome}"
-                            FontSize="18"
-                            FontAttributes="Bold"
-                            TextColor="#155263" />
+                        <VerticalStackLayout
+                            Spacing="4">
+
+                            <Label
+                                Text="{Binding Id, StringFormat='Código: {0}'}"
+                                FontFamily="OpenSansSemibold"
+                                FontSize="13"
+                                TextColor="#666666" />
+
+                            <Label
+                                Text="{Binding Nome}"
+                                FontFamily="OpenSansSemibold"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="#155263" />
+
+                        </VerticalStackLayout>
 
                     </Border>
 
@@ -83,6 +105,6 @@
 
         </CollectionView>
 
-    </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>

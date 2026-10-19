@@ -1,4 +1,5 @@
 ﻿using MauiAppVivaSenior.Views;
+
 namespace MauiAppVivaSenior;
 
 public partial class AppShell : Shell
@@ -21,7 +22,14 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(CadastroMedicamentoCatalogoPage), typeof(CadastroMedicamentoCatalogoPage));
         Routing.RegisterRoute(nameof(EditarMedicamentoPage), typeof(EditarMedicamentoPage));
 
-        Routing.RegisterRoute(nameof(EditarConsultaPage),typeof(EditarConsultaPage));
-        Routing.RegisterRoute(nameof(CadastroConsultaPage),typeof(CadastroConsultaPage));
+        Routing.RegisterRoute(nameof(CadastroConsultaPage), typeof(CadastroConsultaPage));
+        Routing.RegisterRoute(nameof(EditarConsultaPage), typeof(EditarConsultaPage));
+
+        Routing.RegisterRoute(nameof(CadastroUsuarioPage), typeof(CadastroUsuarioPage));
+
+        Routing.RegisterRoute(nameof(AssociarAcompanhantePage), typeof(AssociarAcompanhantePage));
+
+        Routing.RegisterRoute(nameof(CadastroObservacaoDiariaPage),typeof(CadastroObservacaoDiariaPage));
+        Routing.RegisterRoute(nameof(EditarObservacaoDiariaPage), typeof(EditarObservacaoDiariaPage));
     }
 }

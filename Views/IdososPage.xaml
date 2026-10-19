@@ -4,7 +4,6 @@
     x:Class="MauiAppVivaSenior.Views.IdososPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Idosos"
     BackgroundColor="#F5FAF8">
 
     <Grid
@@ -15,6 +14,7 @@
         <Label
             Grid.Row="0"
             Text="Idosos"
+            FontFamily="OpenSansSemibold"
             FontSize="28"
             FontAttributes="Bold"
             TextColor="#155263" />
@@ -22,9 +22,11 @@
         <Button
             Grid.Row="1"
             Text="+ Cadastrar Idoso"
-            BackgroundColor="#10A77F"
+            FontFamily="OpenSansSemibold"
+            FontSize="16"
+            BackgroundColor="#155263"
             TextColor="White"
-            CornerRadius="12"
+            CornerRadius="10"
             HeightRequest="50"
             Clicked="BtnCadastrarIdoso_Clicked" />
 
@@ -39,7 +41,8 @@
 
                     <Border
                         BackgroundColor="White"
-                        StrokeThickness="0"
+                        Stroke="#DCE7E5"
+                        StrokeThickness="1"
                         StrokeShape="RoundRectangle 15"
                         Padding="15"
                         Margin="0,5">
@@ -48,14 +51,16 @@
 
                             <Label
                                 Text="{Binding Nome}"
+                                FontFamily="OpenSansSemibold"
                                 FontSize="20"
                                 FontAttributes="Bold"
                                 TextColor="#155263" />
 
                             <Label
                                 Text="{Binding Idade, StringFormat='Idade: {0} anos'}"
+                                FontFamily="OpenSansRegular"
                                 FontSize="15"
-                                TextColor="Gray" />
+                                TextColor="#666666" />
 
                         </VerticalStackLayout>
 

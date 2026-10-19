@@ -4,106 +4,138 @@
     x:Class="MauiAppVivaSenior.Views.DetalhesIdosoPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Detalhes do Idoso"
     BackgroundColor="#F5FAF8">
 
     <ScrollView>
 
         <VerticalStackLayout
-            Padding="20"
-            Spacing="15">
+            Padding="16"
+            Spacing="7">
 
             <Label
                 Text="Detalhes do Idoso"
-                FontSize="28"
+                FontFamily="OpenSansSemibold"
+                FontSize="24"
                 FontAttributes="Bold"
-                TextColor="#155263" />
+                TextColor="#155263"
+                Margin="0,0,0,4" />
 
             <Border
                 BackgroundColor="White"
-                StrokeThickness="0"
-                StrokeShape="RoundRectangle 15"
-                Padding="20">
+                Stroke="#DCE7E5"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 12"
+                Padding="14">
 
-                <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout Spacing="7">
 
                     <Label
                         Text="Nome completo"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        TextColor="Gray" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Label
                         x:Name="lblNome"
-                        FontSize="20"
-                        FontAttributes="Bold"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="18"
                         TextColor="#155263" />
 
                     <Label
                         Text="Idade"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        TextColor="Gray" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Label
                         x:Name="lblIdade"
-                        FontSize="17"
-                        TextColor="#333333" />
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#555555" />
 
                     <Label
                         Text="Data de nascimento"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        TextColor="Gray" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Label
                         x:Name="lblDataNascimento"
-                        FontSize="17"
-                        TextColor="#333333" />
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#555555" />
 
                     <Label
                         Text="CPF"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        TextColor="Gray" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Label
                         x:Name="lblCPF"
-                        FontSize="17"
-                        TextColor="#333333" />
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#555555" />
 
                     <Label
                         Text="Telefone"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        TextColor="Gray" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Label
                         x:Name="lblTelefone"
-                        FontSize="17"
-                        TextColor="#333333" />
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#555555" />
 
                     <Label
                         Text="Endereço"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        TextColor="Gray" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Label
                         x:Name="lblEndereco"
-                        FontSize="17"
-                        TextColor="#333333" />
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#555555" />
+
+                    <Label
+                        Text="Gênero"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
+
+                    <Label
+                        x:Name="lblGenero"
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#555555" />
+
+                    <Label
+                        Text="Contato de emergência"
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
+
+                    <Label
+                        x:Name="lblContatoEmergencia"
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#555555" />
 
                     <Label
                         Text="Observações"
-                        FontAttributes="Bold"
-                        FontSize="14"
-                        TextColor="Gray" />
+                        FontFamily="OpenSansSemibold"
+                        FontSize="13"
+                        TextColor="#155263" />
 
                     <Label
                         x:Name="lblObservacoes"
-                        FontSize="17"
-                        TextColor="#333333" />
+                        FontFamily="OpenSansRegular"
+                        FontSize="15"
+                        TextColor="#555555" />
 
                 </VerticalStackLayout>
 
@@ -111,31 +143,54 @@
 
             <HorizontalStackLayout
                 HorizontalOptions="Center"
-                Spacing="10">
+                Spacing="7"
+                Margin="0,4,0,0">
 
                 <Button
                     Text="💊 Medicações"
-                    BackgroundColor="#10A77F"
+                    FontFamily="OpenSansSemibold"
+                    FontSize="13"
+                    BackgroundColor="#155263"
                     TextColor="White"
-                    CornerRadius="10"
-                    HeightRequest="50"
+                    CornerRadius="8"
+                    HeightRequest="42"
+                    Padding="10,0"
                     Clicked="BtnMedicamentos_Clicked" />
 
                 <Button
+                    x:Name="BtnEditar"
                     Text="✏️ Editar"
-                    BackgroundColor="#10A77F"
+                    FontFamily="OpenSansSemibold"
+                    FontSize="13"
+                    BackgroundColor="#155263"
                     TextColor="White"
-                    CornerRadius="10"
-                    HeightRequest="50"
+                    CornerRadius="8"
+                    HeightRequest="42"
+                    Padding="10,0"
                     Clicked="BtnEditar_Clicked" />
-
+              
                 <Button
+                  Text="📝 Observações Diárias"
+                  FontFamily="OpenSansSemibold"
+                  FontSize="14"
+                  BackgroundColor="#155263"
+                  TextColor="White"
+                  CornerRadius="9"
+                  HeightRequest="46"
+                  Clicked="BtnObservacoes_Clicked" />
+              
+                <Button
+                    x:Name="BtnExcluir"
                     Text="🗑️ Excluir"
+                    FontFamily="OpenSansSemibold"
+                    FontSize="13"
                     BackgroundColor="#D9534F"
                     TextColor="White"
-                    CornerRadius="10"
-                    HeightRequest="50"
+                    CornerRadius="8"
+                    HeightRequest="42"
+                    Padding="10,0"
                     Clicked="BtnExcluir_Clicked" />
+  
 
             </HorizontalStackLayout>
 
